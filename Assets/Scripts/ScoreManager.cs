@@ -5,29 +5,40 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    public static ScoreManager Instance = null;
+
     public Text currentScoreUI;
     private int currentScore;
 
     public Text bestScoreUI;
     private int bestScore;
 
-    public void SetScore(int value)
+    void Awake()
     {
-        currentScore++;
-        currentScoreUI.text = "현재 점수 : " + currentScore;
-
-        if (currentScore > bestScore)
+        if(Instance == null)
         {
-            bestScore = currentScore;
-
-            bestScoreUI.text = "최고 점수 : " + bestScore;
-
-            PlayerPrefs.SetInt("Best Score", bestScore);
+            Instance = this;
         }
     }
-    public int GetScore()
+
+    public int Score
     {
-        return currentScore;
+        get
+        {
+            return currentScore;
+        }
+        set
+        {
+            currentScore = value;
+            currentScoreUI.text = "현재 점수 : " + currentScore;
+
+            if (currentScore > bestScore)
+            {
+                bestScore = currentScore;
+                bestScoreUI.text = "최고 점수 : " + bestScore;
+                PlayerPrefs.SetInt("Best Score", bestScore);
+            }
+        }
     }
 
     // Start is called before the first frame update
