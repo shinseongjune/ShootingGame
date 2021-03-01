@@ -41,9 +41,22 @@ public class Enemy : MonoBehaviour
         GameObject explosion = Instantiate(explosionFactory);
         explosion.transform.position = transform.position;
 
+        if (other.gameObject.name.Contains("Bullet"))
+        {
+            other.gameObject.SetActive(false);
 
-        Destroy(other.gameObject);
+            PlayerFire player = GameObject.Find("Player").GetComponent<PlayerFire>();
+            player.bulletObjectPool.Add(other.gameObject);
+        }
+        else
+        {
+            Destroy(other.gameObject);
+        }
+        gameObject.SetActive(false);
 
-        Destroy(gameObject);
+        GameObject emObject = GameObject.Find("EnemyManager");
+        EnemyManager manager = emObject.GetComponent<EnemyManager>();
+
+        manager.enemyObjectPool.Add(gameObject);
     }
 }
