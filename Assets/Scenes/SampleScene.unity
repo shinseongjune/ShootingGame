@@ -409,6 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolSize: 10
+  enemyObjectPool: []
   spawnPoints:
   - {fileID: 1082360804}
   - {fileID: 1521679538}
@@ -1745,4 +1746,5 @@ MonoBehaviour:
   bulletFactory: {fileID: 8308329518535747149, guid: 9750368d5f25cd140a0425b5d323f91f,
     type: 3}
   poolSize: 10
+  bulletObjectPool: []
   firePosition: {fileID: 1515533695}
